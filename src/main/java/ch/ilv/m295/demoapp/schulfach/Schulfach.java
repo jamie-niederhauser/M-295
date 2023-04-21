@@ -1,4 +1,4 @@
-package ch.ilv.m295.demoapp.department;
+package ch.ilv.m295.demoapp.schulfach;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,26 +8,19 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.math.BigInteger;
+
 @Data
 @Entity
-public class Department {
-
+public class Schulfach {
     @Id
-
+    @GeneratedValue
     private Long id;
 
     @Column(nullable = false)
-    @Size(max = 255)
+    @Size(max = 100)
     @NotEmpty
-    private String name;
+    private String schulfach;
 
 
-    @Column(nullable = false)
-    @Size(max = 255)
-    @NotEmpty
-    private String Nachname;
-
-
-    public Department() {
-    }
 }
