@@ -16,6 +16,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebSecurity
+
 @EnableMethodSecurity(jsr250Enabled = true, securedEnabled = true)
 public class SecurityConfig {
 
@@ -38,7 +39,10 @@ public class SecurityConfig {
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.jwtAuthenticationConverter(new AuthenticationRoleConverter())))
                 .csrf(csrf -> csrf.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).csrfTokenRequestHandler(requestHandler))
                 .cors();
-        return http.build();
+
+
+
+                                           return http.build();
     }
 
     @Bean
