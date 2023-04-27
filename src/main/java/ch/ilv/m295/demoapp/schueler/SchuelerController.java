@@ -1,6 +1,7 @@
 package ch.ilv.m295.demoapp.schueler;
 
 import ch.ilv.m295.demoapp.base.MessageResponse;
+import ch.ilv.m295.demoapp.security.Roles;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.validation.Valid;
@@ -22,6 +23,7 @@ public class SchuelerController {
     }
 
     @GetMapping("api/schueler")
+    @RolesAllowed(Roles.Read)
     public ResponseEntity<List<Schueler>> all() {
         List<Schueler> result = schuelerService.getSchuelers();
         return new ResponseEntity<>(result, HttpStatus.OK);
@@ -29,6 +31,7 @@ public class SchuelerController {
 
 
     @GetMapping("api/schueler/{id}")
+    @RolesAllowed(Roles.Read)
     public ResponseEntity<Schueler> one(@PathVariable Long id) {
         Schueler schueler = schuelerService.getSchueler(id);
         return new ResponseEntity<>(schueler, HttpStatus.OK);
@@ -36,6 +39,7 @@ public class SchuelerController {
 
 
     @PostMapping("api/schueler")
+    @RolesAllowed(Roles.Admin)
     public ResponseEntity<Schueler> newSchueler(@Valid @RequestBody Schueler schueler) {
         Schueler savedSchueler = schuelerService.insertSchueler(schueler);
         return new ResponseEntity<>(savedSchueler, HttpStatus.OK);
@@ -43,12 +47,14 @@ public class SchuelerController {
 
 
     @PutMapping("api/schueler/{id}")
+    @RolesAllowed(Roles.Admin)
     public ResponseEntity<Schueler> updateSchueler(@Valid @RequestBody Schueler schueler, @PathVariable Long id) {
         Schueler savedSchueler = schuelerService.updateSchueler(schueler, id);
         return new ResponseEntity<>(savedSchueler, HttpStatus.OK);
     }
 
     @DeleteMapping("api/schueler/{id}")
+    @RolesAllowed(Roles.Admin)
     public ResponseEntity<MessageResponse> deleteSchueler(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(schuelerService.deleteSchueler(id));

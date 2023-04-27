@@ -29,4 +29,8 @@ public class Klasse {
 
     }
 
+    public Klasse(String klassenname){
+        this.klassenname = klassenname;
+    }
+
 }
