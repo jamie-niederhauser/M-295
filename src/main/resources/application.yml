@@ -7,7 +7,7 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    url: jdbc:postgresql://localhost:5432/m-295-app
+    url: jdbc:postgresql://localhost:5432/notenportal
     username: postgres
     password: Ict2023
     driverClassName: org.postgresql.Driver
